@@ -20,7 +20,7 @@ const memberSchema = mongoose.Schema({
   memberRole: String,
   memberType: String,
   dateConflicts: [String],
-  dateScheduled: [String]
+  datesScheduled: [String]
 });
 
 const Member = mongoose.model('Member', memberSchema);
@@ -54,10 +54,20 @@ const saveOne = (data) => {
       if (err) {
         console.log('error while saving to db', err);
       } else {
-        console.log(member.email + ' saved to the db');
+        console.log('successfully saved to db');
+        Member.count({}, (err, count) => {
+          if (err) {
+            throw err;
+          } else {
+            console.log(`there are now ${count} documents in the db`);
+          }
+        })
       }
     });
+
+
 };
+
 
 module.exports.selectAll = selectAll;
 module.exports.saveOne = saveOne;
