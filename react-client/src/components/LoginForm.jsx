@@ -5,38 +5,9 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      member: {
-        organization: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        memberRole: '',
-        memberType: ''
-      }
+
     };
-
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
-
-  // handleSubmit(e) {
-  //   e.preventDefault();
-  //   axios.post(`/api/member/${this.state.email}`, this.state.member)
-  //     .then((res) => {
-  //       console.log('response from posting form to db:', res);
-  //     })
-  //     .catch((err) => {
-  //       console.log('error while posting form to db:', err);
-  //     });
-  // }
-
-  // handleChange(e) {
-  //   let { value, name } = e.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
 
   render() {
     return (

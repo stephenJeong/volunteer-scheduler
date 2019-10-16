@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 db.on('error', function() {
   console.log('mongoose connection error');
@@ -11,15 +11,22 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+const memberSchema = mongoose.Schema({
+  orgName: String,
+  firstName: String,
+  lastName: String,
+  email: String,
+  phone: String,
+  memberRole: String,
+  memberType: String,
+  dateConflicts: [String],
+  dateScheduled: [String]
 });
 
-var Item = mongoose.model('Item', itemSchema);
+const Member = mongoose.model('Member', memberSchema);
 
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+const selectAll = function(callback) {
+  Member.find({}, function(err, items) {
     if(err) {
       callback(err, null);
     } else {
@@ -27,5 +34,7 @@ var selectAll = function(callback) {
     }
   });
 };
+
+// post to db
 
 module.exports.selectAll = selectAll;
