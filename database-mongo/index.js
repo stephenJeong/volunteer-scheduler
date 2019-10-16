@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/scheduler');
 
 const db = mongoose.connection;
 
@@ -25,16 +25,39 @@ const memberSchema = mongoose.Schema({
 
 const Member = mongoose.model('Member', memberSchema);
 
-const selectAll = function(callback) {
-  Member.find({}, function(err, items) {
+const selectAll = (callback) => {
+  Member.find({}, function(err, members) {
     if(err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, members);
     }
   });
 };
 
 // post to db
+const saveOne = (data) => {
+  // let newMember = new Member({ data });
+  // newMember.save((err, member) => {
+  //   if (err) {
+  //     console.log('error while saving to db', err);
+  //   } else {
+  //     console.log(member.email + ' saved to the db');
+  //   }
+  // });
+
+  Member.findOneAndUpdate(
+    { email: data.email },
+    data,
+    { upsert: true},
+    (err, results) => {
+      if (err) {
+        console.log('error while saving to db', err);
+      } else {
+        console.log(member.email + ' saved to the db');
+      }
+    });
+};
 
 module.exports.selectAll = selectAll;
+module.exports.saveOne = saveOne;

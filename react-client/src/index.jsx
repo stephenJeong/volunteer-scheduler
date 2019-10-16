@@ -50,9 +50,9 @@ class App extends React.Component {
   handleChange(e) {
     let { value, name } = e.target;
     this.setState(prevState => {
-      let member = Object.assign({}, prevState.member);  // creating copy of state variable jasper
-      member[name] = value;                     // update the name property, assign a new value
-      return { member };                                 // return new object jasper object
+      let member = Object.assign({}, prevState.member);
+      member[name] = value;
+      return { member };
     })
   }
 

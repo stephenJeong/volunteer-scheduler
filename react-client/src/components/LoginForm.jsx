@@ -34,11 +34,20 @@ class LoginForm extends React.Component {
           </label>
           <label>
             Member Role:
-            <input type="text" name="memberRole" onChange={this.props.handleChange} />
+          <select>
+            <option value="admin">Admin</option>
+            <option value="member">Member</option>
+          </select>
           </label>
           <label>
             Member Type:
-            <input type="text" name="memberType" onChange={this.props.handleChange} />
+            <select>
+            <option value="guitarist">Guitarist</option>
+            <option value="vocalist">Vocalist</option>
+            <option value="bassist">Bassist</option>
+            <option value="drummer">Drummer</option>
+            <option value="pianist">Pianist</option>
+          </select>
           </label>
           <input type="submit" value="Login" className="button" />
         </form>

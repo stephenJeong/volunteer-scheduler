@@ -11,9 +11,11 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 app.get('/api/schedule', (req, res) => {
   db.selectAll((err, data) => {
     if(err) {
+      console.log('error while getting organization schedule:', err);
       res.sendStatus(500);
     } else {
       res.json(data);
+      console.log('data from selectAll', data);
     }
   });
 });
@@ -21,6 +23,7 @@ app.get('/api/schedule', (req, res) => {
 app.get('/api/schedule/:memberEmail', (req, res) => {
   db.selectAll((err, data) => {
     if(err) {
+      console.log('error while getting member data:', err);
       res.sendStatus(500);
     } else {
       res.json(data);
