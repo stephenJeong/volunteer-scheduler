@@ -35,6 +35,7 @@ class LoginForm extends React.Component {
           <label>
             Member Role:
           <select>
+            <option value=""></option>
             <option value="admin">Admin</option>
             <option value="member">Member</option>
           </select>
@@ -42,6 +43,7 @@ class LoginForm extends React.Component {
           <label>
             Member Type:
             <select>
+            <option value=""></option>
             <option value="guitarist">Guitarist</option>
             <option value="vocalist">Vocalist</option>
             <option value="bassist">Bassist</option>
