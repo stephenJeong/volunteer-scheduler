@@ -1,34 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import List from './components/List.jsx';
+import Calendar from './components/Calendar.jsx';
+import LoginForm from './components/LoginForm.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       items: []
     }
   }
 
   componentDidMount() {
-    $.ajax({
-      url: '/items', 
-      success: (data) => {
-        this.setState({
-          items: data
-        })
-      },
-      error: (err) => {
-        console.log('err', err);
-      }
-    });
+
+  }
+
+  getData() {
+    axios.get('/api/schedule')
+  }
+
+  postData() {
+    axios.post('/api/<userEmail>')
   }
 
   render () {
     return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
+      <h1>Schedule Your Volunteers</h1>
+      <LoginForm />
     </div>)
   }
 }
