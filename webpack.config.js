@@ -13,11 +13,15 @@ module.exports = {
       {
         test : /\.jsx?/,
         include : SRC_DIR,
-        loader : 'babel-loader',      
+        loader : 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015'],
+          plugins: ['transform-object-rest-spread']
        }
       }
     ]
-  }
+  },
+  plugins: [
+    "babel-plugin-transform-object-rest-spread"
+  ]
 };
