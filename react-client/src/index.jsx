@@ -25,10 +25,12 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <h1>Schedule Your Volunteers</h1>
-      <LoginForm />
-    </div>)
+    return (
+      <div>
+        <h1>Schedule Your Volunteers</h1>
+        <LoginForm />
+      </div>
+    );
   }
 }
 
