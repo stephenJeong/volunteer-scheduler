@@ -11,6 +11,8 @@ class LoginForm extends React.Component {
 
   render() {
     return (
+      <div>
+      <h1>Schedule Your Volunteers</h1>
       <form className="loginForm" onSubmit={this.props.handleSubmit}>
           <label>
             Organization:
@@ -53,6 +55,7 @@ class LoginForm extends React.Component {
           </label>
           <input type="submit" value="Login" className="button" />
         </form>
+        </div>
     );
   }
 }

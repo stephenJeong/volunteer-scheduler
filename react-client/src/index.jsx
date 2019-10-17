@@ -20,16 +20,18 @@ class App extends React.Component {
         dateConflicts: '',
         datesScheduled: ''
       },
-      loggedIn: false
+      loggedIn: false,
+      adminView: false,
+      memberView: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  // componentDidMount() {
 
-  }
+  // }
 
   getData() {
     axios.get('/api/schedule')
@@ -61,10 +63,23 @@ class App extends React.Component {
     })
   }
 
+  // getPageView() {
+  //   let state = this.state;
+
+  //   if (state.loggedIn && !state.adminView && !state.memberView) {
+  //     return // add new component here;
+  //   } else if (state.adminView) {
+  //     return // add new component here;
+  //   } else if (state.memberView) {
+  //     return // add new component here;
+  //   } else {
+  //     return <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+  //   }
+  // }
+
   render () {
     return (
       <div>
-        <h1>Schedule Your Volunteers</h1>
         <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
       </div>
     );

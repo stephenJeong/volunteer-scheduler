@@ -36,7 +36,7 @@ const selectAll = (callback) => {
 };
 
 // post to db
-const saveOne = (data) => {
+const saveOne = (data, callback) => {
   // let newMember = new Member({ data });
   // newMember.save((err, member) => {
   //   if (err) {
@@ -61,7 +61,8 @@ const saveOne = (data) => {
           } else {
             console.log(`there are now ${count} documents in the db`);
           }
-        })
+        });
+        callback(null, results);
       }
     });
 

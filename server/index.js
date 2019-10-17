@@ -38,10 +38,13 @@ app.post('/api/member/:memberEmail', (req, res) => {
   console.log('req.body', req.body);
 
   // add data to db
-  db.saveOne(req.body);
-
-  // send response
-  res.sendStatus(201);
+  db.saveOne(req.body, (err, results) => {
+    if (err) {
+      throw err;
+    } else {
+      res.sendStatus(201);
+    }
+  });
 })
 
 app.put('/api/member/:memberEmail', (req, res) => {
