@@ -2,11 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database-mongo');
 const PORT = 3000;
-const axios = require('axios');
+// const axios = require('axios');
 
 var app = express();
 
 app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/schedule', (req, res) => {
   db.selectAll((err, data) => {
@@ -33,12 +35,13 @@ app.get('/api/schedule/:memberEmail', (req, res) => {
 
 app.post('/api/member/:memberEmail', (req, res) => {
   console.log('got to post in server');
+  console.log('req.body', req.body);
 
   // add data to db
+  db.saveOne(req.body);
 
   // send response
   res.sendStatus(201);
-  res.send('saved to db');
 })
 
 app.put('/api/member/:memberEmail', (req, res) => {
@@ -61,4 +64,3 @@ app.delete('/api/:memberEmail', (req, res) => {
 app.listen(PORT, function() {
   console.log('listening on port 3000!');
 });
-

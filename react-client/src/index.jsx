@@ -16,8 +16,11 @@ class App extends React.Component {
         email: '',
         phone: '',
         memberRole: '',
-        memberType: ''
-      }
+        memberType: '',
+        dateConflicts: '',
+        datesScheduled: ''
+      },
+      loggedIn: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,18 +36,20 @@ class App extends React.Component {
   }
 
   postData() {
-    axios.post('/api/<userEmail>')
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
+    console.log('this.state.member', this.state.member);
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
         console.log('response from posting form to db:', res);
+        this.setState({ loggedIn: true });
       })
       .catch((err) => {
         console.log('error while posting form to db:', err);
       });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.postData();
   }
 
   handleChange(e) {

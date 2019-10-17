@@ -12,7 +12,7 @@ db.once('open', function() {
 });
 
 const memberSchema = mongoose.Schema({
-  orgName: String,
+  organization: String,
   firstName: String,
   lastName: String,
   email: String,
