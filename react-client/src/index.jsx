@@ -4,6 +4,10 @@ import $ from 'jquery';
 import axios from 'axios';
 import Calendar from './components/Calendar.jsx';
 import LoginForm from './components/LoginForm.jsx';
+import LoginView from './components/LoginView.jsx';
+import AdminView from './components/AdminView.jsx';
+import MemberView from './components/MemberView.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -28,10 +32,6 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-  // componentDidMount() {
-
-  // }
 
   getData() {
     axios.get('/api/schedule')
@@ -64,17 +64,21 @@ class App extends React.Component {
   }
 
   getPageView() {
-    let state = this.state;
+    let { loggedIn, adminView, memberView } = this.state;
 
-    if (state.loggedIn && !state.adminView && !state.memberView) {
-      return // add new component here;
-    } else if (state.adminView) {
-      return // add new component here;
-    } else if (state.memberView) {
-      return // add new component here;
+    if (loggedIn && !adminView && !memberView) {
+      return <LoginView />
+    } else if (adminView) {
+      return <AdminView />
+    } else if (memberView) {
+      return <MemberView />
     } else {
       return <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     }
+  }
+
+  componentDidMount() {
+    this.getPageView();
   }
 
   render () {

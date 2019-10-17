@@ -5,6 +5,6 @@ const Calendar = (props) => (
   <div>
     <h4> Calendar Component </h4>
   </div>
-)
+);
 
 export default Calendar;

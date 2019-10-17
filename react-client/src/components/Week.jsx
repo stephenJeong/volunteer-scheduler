@@ -4,6 +4,6 @@ const Week = (props) => (
   <div>
     week
   </div>
-)
+);
 
 export default Week;
