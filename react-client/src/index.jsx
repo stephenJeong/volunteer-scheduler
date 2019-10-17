@@ -63,24 +63,24 @@ class App extends React.Component {
     })
   }
 
-  // getPageView() {
-  //   let state = this.state;
+  getPageView() {
+    let state = this.state;
 
-  //   if (state.loggedIn && !state.adminView && !state.memberView) {
-  //     return // add new component here;
-  //   } else if (state.adminView) {
-  //     return // add new component here;
-  //   } else if (state.memberView) {
-  //     return // add new component here;
-  //   } else {
-  //     return <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-  //   }
-  // }
+    if (state.loggedIn && !state.adminView && !state.memberView) {
+      return // add new component here;
+    } else if (state.adminView) {
+      return // add new component here;
+    } else if (state.memberView) {
+      return // add new component here;
+    } else {
+      return <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+    }
+  }
 
   render () {
     return (
       <div>
-        <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+        {this.getPageView()}
       </div>
     );
   }
