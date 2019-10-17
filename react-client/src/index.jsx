@@ -26,7 +26,8 @@ class App extends React.Component {
       },
       loggedIn: false,
       adminView: false,
-      memberView: false
+      memberView: false,
+      allMembers: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,13 +36,17 @@ class App extends React.Component {
 
   getData() {
     axios.get('/api/schedule')
+      .then((res) => {
+        this.setState({ allMembers: res.data });
+      })
+      .catch((err) => {
+        console.log('error while getting all data from db', err);
+      });
   }
 
   postData() {
-    console.log('this.state.member', this.state.member);
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
-        console.log('response from posting form to db:', res);
         this.setState({ loggedIn: true });
       })
       .catch((err) => {
@@ -67,7 +72,7 @@ class App extends React.Component {
     let { loggedIn, adminView, memberView } = this.state;
 
     if (loggedIn && !adminView && !memberView) {
-      return <LoginView />
+      return <LoginView allMembers={this.state.allMembers} />
     } else if (adminView) {
       return <AdminView />
     } else if (memberView) {
@@ -78,7 +83,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getPageView();
+    this.getData();
   }
 
   render () {
