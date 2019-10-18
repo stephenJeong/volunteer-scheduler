@@ -18,6 +18,7 @@ app.get('/api/members', (req, res) => {
       res.sendStatus(500);
     } else {
       res.json(data);
+      // console.log(JSON.stringify(data));
     }
   });
 });
@@ -28,10 +29,12 @@ app.get('/api/schedule', (req, res) => {
       console.log('error while getting members data:', err);
       res.sendStatus(500);
     } else {
-      res.json(data);
-      // replace res.json above with result from utils file
+      console.log('utils ****', utils.formatToWeeks(data));
+      // res.send(utils.formatToWeeks(JSON.stringify(data)));
 
-      
+      // send res.send with results of the above so it should be:
+
+
     }
   });
 });

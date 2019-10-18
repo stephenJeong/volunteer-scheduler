@@ -64,6 +64,7 @@ class App extends React.Component {
           loggedIn: true,
           view: 'admin'
         });
+        this.getSchedule();
       })
       .catch((err) => {
         console.log('error while posting form to db:', err);
@@ -119,6 +120,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getMembersData();
     this.getSchedule();
+
   }
 
   render () {
