@@ -18,7 +18,7 @@ const memberSchema = mongoose.Schema({
   email: String,
   phone: String,
   memberRole: String,
-  memberType: String,
+  // memberType: String,
   dateConflicts: [String],
   datesScheduled: [String]
 });

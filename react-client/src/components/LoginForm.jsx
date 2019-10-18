@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
             <option value="Member">Member</option>
           </select>
           </label>
-          <label>
+          {/* <label>
             Member Type:
             <select name="memberType" onChange={this.props.handleChange}>
             <option value=""></option>
@@ -52,7 +52,7 @@ class LoginForm extends React.Component {
             <option value="Drummer">Drummer</option>
             <option value="Pianist">Pianist</option>
           </select>
-          </label>
+          </label> */}
           <input type="submit" value="Login" className="button" />
         </form>
         </div>
