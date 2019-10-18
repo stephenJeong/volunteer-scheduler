@@ -8,16 +8,29 @@ body {
 }
 
 label {
-  display: inline-block;
-  width: 500px;
+  display: block;
+  width: 200px;
 }
 
 input {
   width: 225px;
 }
 
-.button {
+button {
   border-radius:30px;
+  width: 150px
+}
+
+/* .viewBtn {
+  border-radius: 30px;
+} */
+
+.formBtn {
+  margin-top: 10px;
+}
+
+#finishBtn {
+  margin-left: 10px;
 }
 
 h1 {

@@ -31,6 +31,7 @@ class App extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -44,7 +45,8 @@ class App extends React.Component {
       });
   }
 
-  postData() {
+  handleSubmit(e) {
+    e.preventDefault();
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
         this.setState({ loggedIn: true });
@@ -54,9 +56,28 @@ class App extends React.Component {
       });
   }
 
-  handleSubmit(e) {
+  handleNext(e) {
     e.preventDefault();
-    this.postData();
+    axios.post(`/api/member/${this.state.member.email}`, this.state.member)
+      .then((res) => {
+        this.setState({
+          member: {
+            organization: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            memberRole: '',
+            memberType: '',
+            dateConflicts: '',
+            datesScheduled: ''
+          }
+        });
+        console.log('added member to db');
+      })
+      .catch((err) => {
+        console.log('error while posting form to db:', err);
+      });
   }
 
   handleChange(e) {
@@ -78,7 +99,7 @@ class App extends React.Component {
     } else if (memberView) {
       return <MemberView />
     } else {
-      return <LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+      return <LoginForm memberVals={this.state.member} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleNext={this.handleNext} />
     }
   }
 
