@@ -1,5 +1,6 @@
 body {
   background-color:#1891ed;
+  color:#fff;
 }
 
 .loginForm {
@@ -21,4 +22,23 @@ input {
 
 h1 {
   color:#fff;
+}
+
+.date {
+  font-weight:bold;
+}
+
+.months {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+tr td {
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+td {
+  width: 250px;
+  padding: 10px;
 }
