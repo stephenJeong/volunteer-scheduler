@@ -49,10 +49,11 @@ class App extends React.Component {
   getSchedule() {
     axios.get('/api/schedule')
       .then((res) => {
+        console.log('res from get schedule', res);
         this.setState({ schedule: res.data });
       })
       .catch((err) => {
-        console.log('error while getting all data from db', err);
+        console.log('error while getting schedule data from db', err);
       });
   }
 
@@ -119,8 +120,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getMembersData();
-    this.getSchedule();
-
   }
 
   render () {

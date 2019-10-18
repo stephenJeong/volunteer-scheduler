@@ -37,21 +37,37 @@ const formatToWeeks = (members) => {
     }
   }
 
+  let lastScheduled = 0;
+  let newMemberSort = (original, index) => {
+    let og = original;
+    let newStart = og.slice(index);
+    let newEnd = og.slice(0, index)
+
+    return newStart.concat(newEnd);
+  };
+
   for (let i = 0; i < sundays.length; i++) {
-    console.log(`***sundays - ${i}`, sundays[i].date);
-    for (let x = 0; x < members.length; x++) {
-      // check if the volunteers array for this date has < 5 people
-      if (sundays[i].volunteers.length < 5) {
-        // check if member has a date conflict with current date
-        if (members[x].dateConflicts[0] !== sundays[i].date) {
-          // If they don't, then add them to the volunteers arrayof the object
-          sundays[i].volunteers.push(members[x].firstName + " " + members[x].lastName)
-          // also add the date to members own data
-          members[x].datesScheduled = sundays[i].date
-        }
-      } else if (sundays[i].volunteers.length === 5) {
+    // use this function so that you don't always start with the same members
+    let memberList = newMemberSort(members, lastScheduled);
+    for (let x = 0; x < memberList.length; x++) {
+      // check if the volunteers array for this date === 5 people
+      if (sundays[i].volunteers.length === 5) {
         // if they have >= 5, break loop
+        lastScheduled = x;
         break;
+      } else if (sundays[i].volunteers.length < 5) {
+        // check if member has a date conflict with current date
+        let dConflict = () => {
+          if (memberList[x].dateConflicts.length > 0) {
+            return memberList[x].dateConflicts[0];
+          }
+        }
+        if (dConflict !== sundays[i].date) {
+          // If they don't, then add them to the volunteers arrayof the object
+          sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
+          // also add the date to members own data
+          memberList[x].datesScheduled = sundays[i].date
+        }
       }
     }
   }

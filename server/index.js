@@ -29,12 +29,8 @@ app.get('/api/schedule', (req, res) => {
       console.log('error while getting members data:', err);
       res.sendStatus(500);
     } else {
-      console.log('utils ****', utils.formatToWeeks(data));
-      // res.send(utils.formatToWeeks(JSON.stringify(data)));
-
-      // send res.send with results of the above so it should be:
-
-
+      // console.log('utils ****', utils.formatToWeeks(data));
+      res.send(utils.formatToWeeks(data));
     }
   });
 });
