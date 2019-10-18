@@ -88,7 +88,7 @@ class App extends React.Component {
           }
         });
         console.log('added member to db');
-        this.getAllData();
+        this.getMembersData();
       })
       .catch((err) => {
         console.log('error while posting form to db:', err);
@@ -117,7 +117,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllData();
+    this.getMembersData();
+    this.getSchedule();
   }
 
   render () {
