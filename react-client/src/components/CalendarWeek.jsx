@@ -1,9 +1,11 @@
 import React from 'react';
 
-const CalendarWeek = (props) => (
+const CalendarWeek = (props) => {
+  return (
   <div>
-    week
+    Calendar Week
   </div>
-);
+  );
+}
 
 export default CalendarWeek;

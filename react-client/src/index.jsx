@@ -34,7 +34,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getData() {
+  getAllData() {
     axios.get('/api/schedule')
       .then((res) => {
         this.setState({ allMembers: res.data });
@@ -83,7 +83,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData();
+    this.getAllData();
   }
 
   render () {
