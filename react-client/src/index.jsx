@@ -27,7 +27,8 @@ class App extends React.Component {
       loggedIn: false,
       addMember: false,
       view: 'home',
-      allMembers: []
+      allMembers: [],
+      schedule: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,10 +36,20 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getAllData() {
-    axios.get('/api/schedule')
+  getMembersData() {
+    axios.get('/api/members')
       .then((res) => {
         this.setState({ allMembers: res.data });
+      })
+      .catch((err) => {
+        console.log('error while getting all data from db', err);
+      });
+  }
+
+  getSchedule() {
+    axios.get('/api/schedule')
+      .then((res) => {
+        this.setState({ schedule: res.data });
       })
       .catch((err) => {
         console.log('error while getting all data from db', err);

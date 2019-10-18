@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database-mongo');
 const PORT = 3000;
+const utils = require('../utils/utils.js');
 // const axios = require('axios');
 
 var app = express();
@@ -10,50 +11,27 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/api/schedule', (req, res) => {
+app.get('/api/members', (req, res) => {
   db.selectAll((err, data) => {
     if(err) {
-      console.log('error while getting organization schedule:', err);
+      console.log('error while getting members data:', err);
       res.sendStatus(500);
     } else {
       res.json(data);
-      // JSON.stringify(data) returns array of objects
+    }
+  });
+});
 
-      /*
-      WIP!!
+app.get('/api/schedule', (req, res) => {
+  db.selectAll((err, data) => {
+    if(err) {
+      console.log('error while getting members data:', err);
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+      // replace res.json above with result from utils file
 
-      console.log('JSON.stringify(data)', JSON.stringify(data));
-      let originalData = JSON.stringify(data);
-
-      // create code to rearrange data by date
-      // get list of sundays for current month
-      let currentDate = new Date();
-      let totalDaysMonth = new Date(currentDate.getMonth(), currentDate.getFullYear(), 0).getDate();
-      let sundaysThisMonth = [];
-
-      for (let i = 1; i < totalDaysMonth; i++) {
-        let newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
-        if (newDate.getDay() === 0) {
-          let obj = {};
-          obj.date = newDate.toISOString().substring(0,10);
-          sundaysThisMonth.push(obj);
-        }
-      }
-
-      // loop through array and check dates scheduled
-      for (let i = 0; i < originalData.length; i++) {
-       // loop through possible dates this month
-       for (let x = 0; x < sundaysThisMonth.length; x++) {
-        // Assign to specific days unless that day is in their datesconflicts array
-
-       }
-      }
-      // while looping/ also create new object to store memberTypes where keys will be memberType and values will be array of people
-
-      // res.send reformatted data to client
-
-      */
-
+      
     }
   });
 });

@@ -21,9 +21,9 @@ button {
   width: 150px
 }
 
-/* .viewBtn {
-  border-radius: 30px;
-} */
+#memberViewBtn {
+  margin-left: 10px;
+}
 
 .formBtn {
   margin-top: 10px;
@@ -54,6 +54,10 @@ table tr td {
 td {
   width: 250px;
   padding: 10px;
+}
+
+.tableHeaders {
+  font-weight: bold;
 }
 
 #memberAddedTbl {

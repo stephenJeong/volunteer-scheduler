@@ -6,13 +6,13 @@ const AddedMembers = (props) => {
       return <table>
           <tbody>
             <tr>
-              <td colSpan="4">Volunteers Added:</td>
+              <td colSpan="4" className="tableHeaders">Volunteers Added:</td>
             </tr>
             <tr>
-              <td>Name</td>
-              <td>Email</td>
-              <td>Phone</td>
-              <td>Dates Unavailable</td>
+              <td className="tableHeaders">Name</td>
+              <td className="tableHeaders">Email</td>
+              <td className="tableHeaders">Phone</td>
+              <td className="tableHeaders">Dates Unavailable</td>
             </tr>
             {props.allMembers.map((member) => (
               <tr>
