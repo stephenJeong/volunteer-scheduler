@@ -9,7 +9,7 @@ const LoginView = (props) => (
       <button id="memberViewBtn">Member View</button>
     </div>
     <div>
-      <Calendar allMembers={props.allMembers} />
+      <Calendar schedule={props.schedule} />
     </div>
   </div>
 );

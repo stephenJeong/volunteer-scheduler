@@ -49,7 +49,6 @@ class App extends React.Component {
   getSchedule() {
     axios.get('/api/schedule')
       .then((res) => {
-        console.log('res from get schedule', res);
         this.setState({ schedule: res.data });
       })
       .catch((err) => {
@@ -110,7 +109,7 @@ class App extends React.Component {
     let view = this.state.view;
 
     if (view === 'admin') {
-      return <LoginView allMembers={this.state.allMembers} />
+      return <LoginView schedule={this.state.schedule} />
     } else if (view === 'member') {
       return <MemberView />
     } else {
