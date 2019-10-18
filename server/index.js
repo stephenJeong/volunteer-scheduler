@@ -16,8 +16,12 @@ app.get('/api/schedule', (req, res) => {
       console.log('error while getting organization schedule:', err);
       res.sendStatus(500);
     } else {
-      // res.json(data);
+      res.json(data);
       // JSON.stringify(data) returns array of objects
+
+      /*
+      WIP!!
+
       console.log('JSON.stringify(data)', JSON.stringify(data));
       let originalData = JSON.stringify(data);
 
@@ -38,13 +42,6 @@ app.get('/api/schedule', (req, res) => {
 
       // loop through array and check dates scheduled
       for (let i = 0; i < originalData.length; i++) {
-        /*
-        [
-        {"_id":"5da7b0c3d281b86892455b11","email":"sjeong@gmail.com","__v":0,"firstName":"stephen","lastName":"jeong","memberRole":"Admin","memberType":"Vocalist","organization":"org","phone":"12345","datesScheduled":[""],"dateConflicts":[""]},
-        {"_id":"5da800aad281b86892455f31","email":"3","__v":0,"firstName":"2","lastName":"","memberRole":"Admin","memberType":"Vocalist","organization":"1","phone":"4","datesScheduled":[""],"dateConflicts":[""]},
-        {"_id":"5da801e0d281b86892455f77","email":"1","__v":0,"firstName":"1","lastName":"1","memberRole":"","memberType":"","organization":"1","phone":"1","datesScheduled":[""],"dateConflicts":[""]}
-        ]
-        */
        // loop through possible dates this month
        for (let x = 0; x < sundaysThisMonth.length; x++) {
         // Assign to specific days unless that day is in their datesconflicts array
@@ -54,6 +51,8 @@ app.get('/api/schedule', (req, res) => {
       // while looping/ also create new object to store memberTypes where keys will be memberType and values will be array of people
 
       // res.send reformatted data to client
+
+      */
 
     }
   });

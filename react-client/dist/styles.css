@@ -46,7 +46,7 @@ h1 {
   border-collapse: collapse;
 }
 
-tr td {
+table tr td {
   border: 1px solid #000;
   border-collapse: collapse;
 }
@@ -54,4 +54,8 @@ tr td {
 td {
   width: 250px;
   padding: 10px;
+}
+
+#memberAddedTbl {
+  padding-top: 30px;
 }

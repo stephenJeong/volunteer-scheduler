@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import AddedMembers from './AddedMembers.jsx';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -7,8 +7,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    console.log('this.props.organization', this.props.memberVals.organization);
-    let {organization, firstName, lastName, email, phone, dateConflicts} = this.props.memberVals;
+    let {organization, firstName, lastName, email, phone, dateConflicts} = this.props.memberKeys;
     return (
       <div>
       <h1>Schedule Your Volunteers</h1>
@@ -34,8 +33,8 @@ class LoginForm extends React.Component {
             <input value={phone} type="text" name="phone" onChange={this.props.handleChange} />
           </label>
           <label>
-            Dates Unavailable:
-            <input value={dateConflicts} type="text" name="dateConflicts" onChange={this.props.handleChange} />
+            Unavailable Sunday:
+            <input value={dateConflicts} type="date" name="dateConflicts" onChange={this.props.handleChange} />
           </label>
           {/* <label>
             Member Role:
@@ -58,9 +57,12 @@ class LoginForm extends React.Component {
           </label> */}
           {/* <input type="submit" value="Login" className="button" /> */}
           <button onClick={this.props.handleNext} className="formBtn">Add More Members</button>
-          <button type="submit" className="formBtn" id="finishBtn">Finish</button>
+          <button type="submit" className="formBtn" id="finishBtn">Create Schedule</button>
         </form>
+        <div id="memberAddedTbl">
+          <AddedMembers allMembers={this.props.allMembers} />
         </div>
+      </div>
     );
   }
 }

@@ -25,8 +25,8 @@ class App extends React.Component {
         datesScheduled: ''
       },
       loggedIn: false,
-      adminView: false,
-      memberView: false,
+      addMember: false,
+      view: 'home',
       allMembers: []
     };
 
@@ -49,7 +49,10 @@ class App extends React.Component {
     e.preventDefault();
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
-        this.setState({ loggedIn: true });
+        this.setState({
+          loggedIn: true,
+          view: 'admin'
+        });
       })
       .catch((err) => {
         console.log('error while posting form to db:', err);
@@ -74,6 +77,7 @@ class App extends React.Component {
           }
         });
         console.log('added member to db');
+        this.getAllData();
       })
       .catch((err) => {
         console.log('error while posting form to db:', err);
@@ -90,16 +94,14 @@ class App extends React.Component {
   }
 
   getPageView() {
-    let { loggedIn, adminView, memberView } = this.state;
+    let view = this.state.view;
 
-    if (loggedIn && !adminView && !memberView) {
+    if (view === 'admin') {
       return <LoginView allMembers={this.state.allMembers} />
-    } else if (adminView) {
-      return <AdminView />
-    } else if (memberView) {
+    } else if (view === 'member') {
       return <MemberView />
     } else {
-      return <LoginForm memberVals={this.state.member} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleNext={this.handleNext} />
+      return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleNext={this.handleNext} />
     }
   }
 
