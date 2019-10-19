@@ -58,11 +58,17 @@ const formatToWeeks = (members) => {
       if (sundays[i].volunteers.length < 5) {
         // check if member has a date conflict with current date
         let dConflict = () => {
-          if (memberList[x].dateConflicts.length > 0) {
-            return memberList[x].dateConflicts[0];
+          let conflicts = memberList[x].dateConflicts;
+          if (conflicts.length > 0) {
+            for (let y = 0; y < conflicts.length; y++) {
+              if (conflicts[y] === sundays[i].date) {
+                return true;
+              }
+            }
+            return false;
           }
         }
-        if (dConflict() !== sundays[i].date) {
+        if (dConflict()) {
           // If they don't, then add them to the volunteers arrayof the object
           sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
           // also add the date to members own data

@@ -4,7 +4,7 @@ const faker = require('faker');
 
 const seedData = (numOfData) => {
   for (let i = 0; i < numOfData; i++) {
-    /*
+
     // create array for date conflicts
     let datesConflictsChoices= [];
     let conflictDates = new Date();
@@ -17,6 +17,7 @@ const seedData = (numOfData) => {
       }
     }
 
+/*
     // create array for dates scheduled
     let datesScheduledChoices = [];
     let scheduleDates = new Date();
@@ -47,7 +48,7 @@ const seedData = (numOfData) => {
       phone: faker.phone.phoneNumber(),
       memberRole: '',
       memberType: '',
-      dateConflicts: [''],
+      dateConflicts: datesConflictsChoices,
       datesScheduled: ['']
     }, (err, results) => {
       if (err) {
