@@ -31,8 +31,8 @@ class App extends React.Component {
       schedule: []
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNext = this.handleNext.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+    this.handleAddMore = this.handleAddMore.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -56,7 +56,7 @@ class App extends React.Component {
       });
   }
 
-  handleSubmit(e) {
+  handleCreate(e) {
     e.preventDefault();
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
@@ -71,7 +71,7 @@ class App extends React.Component {
       });
   }
 
-  handleNext(e) {
+  handleAddMore(e) {
     e.preventDefault();
     axios.post(`/api/member/${this.state.member.email}`, this.state.member)
       .then((res) => {
@@ -113,7 +113,7 @@ class App extends React.Component {
     } else if (view === 'member') {
       return <MemberView />
     } else {
-      return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleNext={this.handleNext} />
+      return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleCreate={this.handleCreate} handleAddMore={this.handleAddMore} />
     }
   }
 

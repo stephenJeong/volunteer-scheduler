@@ -1,19 +1,20 @@
 const db = require('./index.js');
 const faker = require('faker');
 
-
 const seedData = (numOfData) => {
+  let conflictDates = new Date();
+  conflictDates.setDate(conflictDates.getDate()+1);
   for (let i = 0; i < numOfData; i++) {
-
     // create array for date conflicts
     let datesConflictsChoices= [];
-    let conflictDates = new Date();
 
-    for (let i = 0; i < 4; i++) {
-      let random = Math.floor(Math.random() * 2);
+    for (let i = 0; i < 8; i++) {
+      let random = Math.floor(Math.random() * 10);
       if (random === 1) {
-        conflictDates.setDate(conflictDates.getDate()+7);
-        datesConflictsChoices.push(conflictDates.toISOString().substring(0,10));
+        if (datesConflictsChoices.length === 0) {
+          conflictDates.setDate(conflictDates.getDate()+7);
+          datesConflictsChoices.push(conflictDates.toISOString().substring(0,10));
+        }
       }
     }
 
@@ -41,7 +42,7 @@ const seedData = (numOfData) => {
 
     // always make first object game_name Stardew_Valley
     db.saveOne({
-      orgName: faker.company.companyName(),
+      organization: faker.company.companyName(),
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
@@ -58,4 +59,4 @@ const seedData = (numOfData) => {
   }
 };
 
-seedData(15);
+seedData(10);

@@ -6,16 +6,18 @@ const AddedMembers = (props) => {
       return <table>
           <tbody>
             <tr>
-              <td colSpan="4" className="tableHeaders">Volunteers Added:</td>
+              <td colSpan="5" className="tableHeaders">Volunteers Added:</td>
             </tr>
             <tr>
+              <td className="tableHeaders">Organization</td>
               <td className="tableHeaders">Name</td>
               <td className="tableHeaders">Email</td>
               <td className="tableHeaders">Phone</td>
-              <td className="tableHeaders">Dates Unavailable</td>
+              <td className="tableHeaders">Date Unavailable</td>
             </tr>
             {props.allMembers.map((member) => (
               <tr>
+                <td>{member.organization}</td>
                 <td>{member.firstName} {member.lastName}</td>
                 <td>{member.email}</td>
                 <td>{member.phone}</td>

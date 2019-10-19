@@ -4,7 +4,16 @@ body {
 }
 
 .loginForm {
-  width: 600px;
+  margin: 0 auto;
+  width: 250px;
+}
+
+.loginBtns {
+  text-align: center;
+}
+
+.loginHeader {
+  text-align: center;
 }
 
 label {
