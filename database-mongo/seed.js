@@ -4,6 +4,7 @@ const faker = require('faker');
 
 const seedData = (numOfData) => {
   for (let i = 0; i < numOfData; i++) {
+    /*
     // create array for date conflicts
     let datesConflictsChoices= [];
     let conflictDates = new Date();
@@ -27,16 +28,15 @@ const seedData = (numOfData) => {
         datesScheduledChoices.push(scheduleDates.toISOString().substring(0,10));
       }
     }
-
+    */
 
     // create random array for memberRole
-    let memberRoleChoices = ['admin', 'member'];
-    let randomRole = memberRoleChoices[Math.floor(Math.random() * 1)];
+    // let memberRoleChoices = ['admin', 'member'];
+    // let randomRole = memberRoleChoices[Math.floor(Math.random() * 1)];
 
     // create random array for memberType
-    let memberTypeChoices = ['guitarist', 'vocalist', 'bassist', 'drummer', 'pianist'];
-    let randomType = memberTypeChoices[Math.floor(Math.random() * 4)];
-
+    // let memberTypeChoices = ['guitarist', 'vocalist', 'bassist', 'drummer', 'pianist'];
+    // let randomType = memberTypeChoices[Math.floor(Math.random() * 4)];
 
     // always make first object game_name Stardew_Valley
     db.saveOne({
@@ -45,12 +45,15 @@ const seedData = (numOfData) => {
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
       phone: faker.phone.phoneNumber(),
-      memberRole: randomRole,
-      memberType: randomType,
-      dateConflicts: datesConflictsChoices,
-      datesScheduled: datesScheduledChoices
+      memberRole: '',
+      memberType: '',
+      dateConflicts: [''],
+      datesScheduled: ['']
+    }, (err, results) => {
+      if (err) {
+        throw err;
+      }
     });
-
   }
 };
 
