@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
     let {organization, firstName, lastName, email, phone, dateConflicts} = this.props.memberKeys;
     return (
       <div>
-      <h1 className="loginHeader">Schedule Your Volunteers</h1>
+      <h1>Schedule Your Volunteers</h1>
       <div className="loginFormContainer">
         <form className="loginForm" onSubmit={this.props.handleSubmit}>
             <label>
