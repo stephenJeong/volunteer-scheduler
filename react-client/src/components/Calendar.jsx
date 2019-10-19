@@ -2,7 +2,6 @@ import React from 'react';
 import CalendarMonth from './CalendarMonth.jsx';
 
 const Calendar = (props) => {
-  console.log('props.schedule', props.schedule);
   let months = [];
   let monthLoop = 0;
   let firstMonth = [];
