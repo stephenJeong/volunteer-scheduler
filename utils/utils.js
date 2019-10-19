@@ -44,40 +44,38 @@ const formatToWeeks = (members) => {
     let og = original;
     let newStart = og.slice(index);
     let newEnd = og.slice(0, index)
-
     return newStart.concat(newEnd);
   };
 
-  for (let i = 0; i < sundays.length; i++) {
-    // use this function so that you don't always start with the same members
-    let memberList = newMemberSort(members, lastScheduled);
+  // use this function so that you don't always start with the same members
+  let memberList = newMemberSort(members, lastScheduled);
 
-    console.log('lastScheduled', lastScheduled)
-    console.log('memberList.length', memberList.length)
-    for (let x = 0; x < members.length; x++) {
-      if (sundays[i].volunteers.length < 5) {
-        // check if member has a date conflict with current date
-        let dConflict = () => {
-          let conflicts = memberList[x].dateConflicts;
-          if (conflicts.length > 0) {
-            for (let y = 0; y < conflicts.length; y++) {
-              if (conflicts[y] === sundays[i].date) {
-                return true;
-              }
-            }
-            return false;
+  for (let i = 0; i < sundays.length; i++) {
+    // check if member has a date conflict with current date
+    let dConflict = (index) => {
+      let conflicts = memberList[index].dateConflicts;
+      if (conflicts.length > 0) {
+        for (let y = 0; y < conflicts.length; y++) {
+          if (conflicts[y] === sundays[i].date) {
+            return true;
           }
         }
-        if (!dConflict()) {
+        return false;
+      }
+    };
+
+    for (let z = 0; z < members.length; z++) {
+      if (sundays[i].volunteers.length < 5) {
+        if (!dConflict(z)) {
           // If they don't, then add them to the volunteers arrayof the object
-          sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
+          sundays[i].volunteers.push(memberList[z].firstName + " " + memberList[z].lastName)
           // also add the date to members own data
-          memberList[x].datesScheduled = sundays[i].date;
-          db.updateSchedule(memberList[x], (err, results) => {
+          memberList[z].datesScheduled = sundays[i].date;
+          db.updateSchedule(memberList[z], (err, results) => {
             if (err) {
               throw err;
             } else {
-              // console.log(`updated ${memberList[x].firstName}'s schedule`);
+              // console.log(`updated ${memberList[z].firstName}'s schedule`);
             }
           });
         }
@@ -86,7 +84,11 @@ const formatToWeeks = (members) => {
       // check if the volunteers array for this date === 5 people
       if (sundays[i].volunteers.length === 5) {
         // if they have = 5, break loop
-        lastScheduled = ++x;
+        console.log('z', z);
+        lastScheduled = ++z;
+        console.log('lastScheduled', lastScheduled)
+
+
         memberList = newMemberSort(memberList, lastScheduled);
         break;
       }
