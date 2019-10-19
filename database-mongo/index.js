@@ -37,19 +37,10 @@ const selectAll = (callback) => {
 
 // post to db
 const saveOne = (data, callback) => {
-  // let newMember = new Member({ data });
-  // newMember.save((err, member) => {
-  //   if (err) {
-  //     console.log('error while saving to db', err);
-  //   } else {
-  //     console.log(member.email + ' saved to the db');
-  //   }
-  // });
-
   Member.findOneAndUpdate(
     { email: data.email },
     data,
-    { upsert: true},
+    { upsert: true,},
     (err, results) => {
       if (err) {
         console.log('error while saving to db', err);
@@ -65,10 +56,23 @@ const saveOne = (data, callback) => {
         callback(null, results);
       }
     });
-
-
 };
+
+const updateSchedule = (data, callback) => {
+  Member.updateOne(
+    { email: data.email },
+    { datesScheduled: data.datesScheduled, dateConflicts: data.dateConflicts },
+    (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        callback(null, results);
+      }
+    }
+  )
+}
 
 
 module.exports.selectAll = selectAll;
 module.exports.saveOne = saveOne;
+module.exports.updateSchedule = updateSchedule;

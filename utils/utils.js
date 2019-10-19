@@ -1,3 +1,5 @@
+const db = require('../database-mongo/index.js');
+
 const formatToWeeks = (members) => {
   // console.log('members[0]', members[0]);
   // console.log('members.length', members.length);
@@ -64,7 +66,14 @@ const formatToWeeks = (members) => {
           // If they don't, then add them to the volunteers arrayof the object
           sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
           // also add the date to members own data
-          memberList[x].datesScheduled = sundays[i].date
+          memberList[x].datesScheduled = sundays[i].date;
+          db.updateSchedule(memberList[x], (err, results) => {
+            if (err) {
+              throw err;
+            } else {
+              // console.log(`updated ${memberList[x].firstName}'s schedule`);
+            }
+          });
         }
       }
 

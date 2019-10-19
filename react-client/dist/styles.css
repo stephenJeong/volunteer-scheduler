@@ -44,6 +44,7 @@ h1 {
 .months {
   border: 1px solid black;
   border-collapse: collapse;
+  width: 75%;
 }
 
 table tr td {
