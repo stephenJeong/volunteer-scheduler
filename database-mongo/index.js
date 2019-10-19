@@ -61,11 +61,18 @@ const saveOne = (data, callback) => {
 
 // ***** instead of updating the datesScheduled and replacing so that only one date can exist, this code should be refactored to add to an array so there's a list
 
-
 const updateSchedule = (data, callback) => {
   Member.updateOne(
     { email: data.email },
-    { datesScheduled: data.datesScheduled, dateConflicts: data.dateConflicts },
+    {
+      organization: data.organization,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      datesScheduled: data.datesScheduled,
+      dateConflicts: data.dateConflicts
+    },
     (err, results) => {
       if (err) {
         throw err;

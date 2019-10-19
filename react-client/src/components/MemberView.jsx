@@ -14,10 +14,7 @@ class MemberView extends React.Component {
     e.preventDefault();
     this.setState({ member: e.target.value });
     for (let i = 0; i < this.props.allMembers.length; i++) {
-      console.log(this.props.allMembers[i].email)
-      console.log(e.target.value);
       if (this.props.allMembers[i].email === e.target.value) {
-        console.log('****got here!')
         this.props.handleUpdateMemberSelect(this.props.allMembers[i]);
       }
     }
@@ -57,7 +54,7 @@ class MemberView extends React.Component {
             Unavailable Sunday:
             <input value={dateConflicts} type="date" name="dateConflicts" onChange={this.props.handleChange} />
           </label>
-          <button onClick={this.props.handleCreate} className="formBtn" id="finishBtn">Update</button>
+          <button onClick={this.props.handleUpdate} className="formBtn" id="finishBtn">Update</button>
         </form>
         );
       }

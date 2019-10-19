@@ -33,6 +33,7 @@ class App extends React.Component {
 
     this.handleCreate = this.handleCreate.bind(this);
     this.handleAddMore = this.handleAddMore.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdateMember = this.handleUpdateMember.bind(this);
     this.handleUpdateMemberSelect = this.handleUpdateMemberSelect.bind(this);
@@ -98,6 +99,21 @@ class App extends React.Component {
       });
   }
 
+  handleUpdate(e) {
+    e.preventDefault();
+    axios.put(`/api/member/${this.state.member.email}`, this.state.member)
+      .then((res) => {
+        this.setState({
+          loggedIn: true,
+          view: 'admin'
+        });
+        this.getSchedule();
+      })
+      .catch((err) => {
+        console.log('error while posting form to db:', err);
+      });
+  }
+
   handleChange(e) {
     let { value, name } = e.target;
     this.setState(prevState => {
@@ -113,7 +129,6 @@ class App extends React.Component {
   }
 
   handleUpdateMemberSelect(newData) {
-    console.log('got to select update')
     this.setState({ member: newData });
   }
 
@@ -127,7 +142,7 @@ class App extends React.Component {
     if (view === 'admin') {
       return <LoginView schedule={this.state.schedule} handleUpdateMember={this.handleUpdateMember} handleCreate={this.handleCreate}/>
     } else if (view === 'updateMember') {
-      return <MemberView memberKeys={this.state.member} allMembers={this.state.allMembers} handleChange={this.handleChange} handleCreate={this.handleCreate} handleUpdateMemberSelect={this.handleUpdateMemberSelect} />
+      return <MemberView memberKeys={this.state.member} allMembers={this.state.allMembers} handleChange={this.handleChange} handleUpdate={this.handleUpdate} handleUpdateMemberSelect={this.handleUpdateMemberSelect} />
     } else {
       return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleCreate={this.handleCreate} handleAddMore={this.handleAddMore} />
     }

@@ -48,8 +48,6 @@ app.get('/api/schedule/:memberEmail', (req, res) => {
 
 app.post('/api/member/:memberEmail', (req, res) => {
   console.log('got to post in server');
-  // console.log('req.body', req.body);
-
   // add data to db
   db.saveOne(req.body, (err, results) => {
     if (err) {
@@ -62,11 +60,14 @@ app.post('/api/member/:memberEmail', (req, res) => {
 
 app.put('/api/member/:memberEmail', (req, res) => {
   console.log('got to put in server');
-
   // update data in db
-
-  // if successful, send this status
-  res.sendStatus(200);
+  db.updateSchedule(req.body, (err, results) => {
+    if (err) {
+      throw err;
+    } else {
+      res.sendStatus(201);
+    }
+  });
 })
 
 app.delete('/api/:memberEmail', (req, res) => {
