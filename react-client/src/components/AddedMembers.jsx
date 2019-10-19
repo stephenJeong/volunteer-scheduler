@@ -3,7 +3,7 @@ import React from 'react';
 const AddedMembers = (props) => {
   let showTable = () => {
     if (props.allMembers.length > 0) {
-      return <table>
+      return <table className="membersAddedTbl">
           <tbody>
             <tr>
               <td colSpan="5" className="tableHeaders">Volunteers Added:</td>
@@ -16,7 +16,7 @@ const AddedMembers = (props) => {
               <td className="tableHeaders">Date Unavailable</td>
             </tr>
             {props.allMembers.map((member) => (
-              <tr>
+              <tr key={member.email}>
                 <td>{member.organization}</td>
                 <td>{member.firstName} {member.lastName}</td>
                 <td>{member.email}</td>

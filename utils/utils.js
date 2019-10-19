@@ -84,11 +84,7 @@ const formatToWeeks = (members) => {
       // check if the volunteers array for this date === 5 people
       if (sundays[i].volunteers.length === 5) {
         // if they have = 5, break loop
-        console.log('z', z);
         lastScheduled = ++z;
-        console.log('lastScheduled', lastScheduled)
-
-
         memberList = newMemberSort(memberList, lastScheduled);
         break;
       }

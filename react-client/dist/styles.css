@@ -3,8 +3,8 @@ body {
   color:#fff;
 }
 
-.loginForm {
-  margin: 0 auto;
+.centerForm {
+  margin: 30px auto;
   width: 250px;
 }
 
@@ -46,10 +46,6 @@ h1 {
   color:#fff;
 }
 
-.date {
-  font-weight:bold;
-}
-
 .months {
   border: 1px solid black;
   border-collapse: collapse;
@@ -71,6 +67,64 @@ td {
   font-weight: bold;
 }
 
+.date {
+  font-weight:bold;
+  background-color: #fff;
+  color: #1891ed;
+  width: 200px;
+}
+
+.memberSelect {
+  width: 100%;
+}
+
+
 #memberAddedTbl {
   padding-top: 30px;
+  margin: 0 auto;
+  width: 75%;
+}
+
+#memberData {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  width: 700%;
+  max-width: 600px;
+}
+
+.field-1 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1 / 1;
+}
+.field-2 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 2 / 2;
+}
+.field-3 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 3 / 3;
+}
+.field-4 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 4 / 4;
+}
+.field-5 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 5 / 5;
+}
+.field-6 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 6 / 6;
+}
+.field-7 {
+  width: 100%;
+  grid-column: 1;
+  grid-row: 7 / 7;
 }

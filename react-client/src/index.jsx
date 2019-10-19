@@ -34,6 +34,7 @@ class App extends React.Component {
     this.handleCreate = this.handleCreate.bind(this);
     this.handleAddMore = this.handleAddMore.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleUpdateMember = this.handleUpdateMember.bind(this);
   }
 
   getMembersData() {
@@ -105,20 +106,25 @@ class App extends React.Component {
     })
   }
 
-  getPageView() {
-    let view = this.state.view;
-
-    if (view === 'admin') {
-      return <LoginView schedule={this.state.schedule} />
-    } else if (view === 'member') {
-      return <MemberView />
-    } else {
-      return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleCreate={this.handleCreate} handleAddMore={this.handleAddMore} />
-    }
+  handleUpdateMember(e) {
+    e.preventDefault();
+    this.setState({ view: 'updateMember' })
   }
 
   componentDidMount() {
     this.getMembersData();
+  }
+
+  getPageView() {
+    let view = this.state.view;
+
+    if (view === 'admin') {
+      return <LoginView schedule={this.state.schedule} handleUpdateMember={this.handleUpdateMember} handleCreate={this.handleCreate}/>
+    } else if (view === 'updateMember') {
+      return <MemberView allMembers={this.state.allMembers} handleChange={this.handleChange} handleCreate={this.handleCreate}/>
+    } else {
+      return <LoginForm addMember={this.state.addMember} allMembers={this.state.allMembers} memberKeys={this.state.member} handleChange={this.handleChange} handleCreate={this.handleCreate} handleAddMore={this.handleAddMore} />
+    }
   }
 
   render () {

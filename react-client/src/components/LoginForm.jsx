@@ -11,8 +11,8 @@ class LoginForm extends React.Component {
     return (
       <div>
       <h1>Schedule Your Volunteers</h1>
-      <div className="loginFormContainer">
-        <form className="loginForm" onSubmit={this.props.handleSubmit}>
+      <div>
+        <form className="centerForm" onSubmit={this.props.handleSubmit}>
             <label>
               Organization:
               <input value={organization} type="text" name="organization" onChange={this.props.handleChange} />
