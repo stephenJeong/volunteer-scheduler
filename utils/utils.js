@@ -68,7 +68,7 @@ const formatToWeeks = (members) => {
             return false;
           }
         }
-        if (dConflict()) {
+        if (!dConflict()) {
           // If they don't, then add them to the volunteers arrayof the object
           sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
           // also add the date to members own data

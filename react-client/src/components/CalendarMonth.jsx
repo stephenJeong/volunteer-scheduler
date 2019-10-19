@@ -72,17 +72,16 @@ const CalendarMonth = (props) => {
 
   return (
   <div>
-    {/* {createTable()} */}
     <table className="months">
         <tbody>
             {props.month.map((week) => (
               <tr>
                 <td className="date">{week.date}</td>
-                <td className="date">{week.volunteers[0]}</td>
-                <td className="date">{week.volunteers[1]}</td>
-                <td className="date">{week.volunteers[2]}</td>
-                <td className="date">{week.volunteers[3]}</td>
-                <td className="date">{week.volunteers[4]}</td>
+                <td>{week.volunteers[0]}</td>
+                <td>{week.volunteers[1]}</td>
+                <td>{week.volunteers[2]}</td>
+                <td>{week.volunteers[3]}</td>
+                <td>{week.volunteers[4]}</td>
               </tr>
             ))}
         </tbody>

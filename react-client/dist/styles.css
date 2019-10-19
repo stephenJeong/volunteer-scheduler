@@ -12,7 +12,7 @@ body {
   text-align: center;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
 
@@ -54,9 +54,10 @@ h1 {
   border: 1px solid black;
   border-collapse: collapse;
   width: 75%;
+  margin: 0 auto;
 }
 
-table tr td {
+table, tr, td {
   border: 1px solid #000;
   border-collapse: collapse;
 }
