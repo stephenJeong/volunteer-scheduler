@@ -32,6 +32,7 @@ class App extends React.Component {
     };
 
     this.handleCreate = this.handleCreate.bind(this);
+    this.handleHome = this.handleHome.bind(this);
     this.handleAddMore = this.handleAddMore.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -123,6 +124,12 @@ class App extends React.Component {
     })
   }
 
+  handleHome(e) {
+    e.preventDefault();
+    this.getMembersData();
+    this.setState({ view: 'home' });
+  }
+
   handleUpdateMember(e) {
     e.preventDefault();
     this.setState({ view: 'updateMember' })
@@ -140,7 +147,7 @@ class App extends React.Component {
     let view = this.state.view;
 
     if (view === 'admin') {
-      return <LoginView schedule={this.state.schedule} handleUpdateMember={this.handleUpdateMember} handleCreate={this.handleCreate}/>
+      return <LoginView schedule={this.state.schedule} handleUpdateMember={this.handleUpdateMember} handleCreate={this.handleCreate} handleHome={this.handleHome} />
     } else if (view === 'updateMember') {
       return <MemberView memberKeys={this.state.member} allMembers={this.state.allMembers} handleChange={this.handleChange} handleUpdate={this.handleUpdate} handleUpdateMemberSelect={this.handleUpdateMemberSelect} />
     } else {

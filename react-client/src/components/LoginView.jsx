@@ -5,7 +5,7 @@ const LoginView = (props) => (
   <div>
     <h1>Your Volunteers' Schedule</h1>
     <div className="loginBtns">
-      <button>Admin View</button>
+      <button onClick={props.handleHome}>Add More Members</button>
       <button id="memberViewBtn" onClick={props.handleUpdateMember}>Update Member</button>
     </div>
     <div>
