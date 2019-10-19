@@ -3,11 +3,22 @@ import CalendarMonth from './CalendarMonth.jsx';
 
 const Calendar = (props) => {
   console.log('props.schedule', props.schedule);
-  // is there a way to dynamically set those months from the data we get with props?
   let months = [];
+  let monthLoop = 0;
+  let firstMonth = [];
+  let secondMonth = [];
+  let thirdMonth = [];
   props.schedule.forEach((week) => {
     if (!months.includes(week.month)) {
+      monthLoop++;
       months.push(week.month);
+    }
+    if (monthLoop === 1) {
+      firstMonth.push(week);
+    } else if (monthLoop === 2) {
+      secondMonth.push(week);
+    } else if (monthLoop === 3) {
+      thirdMonth.push(week);
     }
   })
 
@@ -15,19 +26,16 @@ const Calendar = (props) => {
   <div>
     <div>
       <h2>{months[0]}</h2>
-      <CalendarMonth weeks={props} />
+      <CalendarMonth month={firstMonth} />
     </div>
     <div>
       <h2>{months[1]}</h2>
-      <CalendarMonth weeks={props} />
+      <CalendarMonth month={secondMonth} />
     </div>
     <div>
       <h2>{months[2]}</h2>
-      <CalendarMonth weeks={props} />
+      <CalendarMonth month={thirdMonth} />
     </div>
-    {/* {props.allMembers.map(data => (
-      <CalendarMonth member={data} key={data.email} />
-    ))} */}
   </div>
   )
 };

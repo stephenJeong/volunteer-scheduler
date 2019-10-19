@@ -49,25 +49,31 @@ const formatToWeeks = (members) => {
   for (let i = 0; i < sundays.length; i++) {
     // use this function so that you don't always start with the same members
     let memberList = newMemberSort(members, lastScheduled);
-    for (let x = 0; x < memberList.length; x++) {
-      // check if the volunteers array for this date === 5 people
-      if (sundays[i].volunteers.length === 5) {
-        // if they have >= 5, break loop
-        lastScheduled = x;
-        break;
-      } else if (sundays[i].volunteers.length < 5) {
+
+    console.log('lastScheduled', lastScheduled)
+    console.log('memberList.length', memberList.length)
+    for (let x = 0; x < members.length; x++) {
+      if (sundays[i].volunteers.length < 5) {
         // check if member has a date conflict with current date
         let dConflict = () => {
           if (memberList[x].dateConflicts.length > 0) {
             return memberList[x].dateConflicts[0];
           }
         }
-        if (dConflict !== sundays[i].date) {
+        if (dConflict() !== sundays[i].date) {
           // If they don't, then add them to the volunteers arrayof the object
           sundays[i].volunteers.push(memberList[x].firstName + " " + memberList[x].lastName)
           // also add the date to members own data
           memberList[x].datesScheduled = sundays[i].date
         }
+      }
+
+      // check if the volunteers array for this date === 5 people
+      if (sundays[i].volunteers.length === 5) {
+        // if they have = 5, break loop
+        lastScheduled = ++x;
+        memberList = newMemberSort(memberList, lastScheduled);
+        break;
       }
     }
   }

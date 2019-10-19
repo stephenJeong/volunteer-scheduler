@@ -3,9 +3,9 @@ import React from 'react';
 const CalendarMonth = (props) => {
   // find out if this month has 4 or 5 weeks and create columns in table accordingly
   // create script to update this variable to 4 or 5
-  let numWeeks = 4;
+  console.log('props.month', props.month);
   let createTable = () => {
-    if (numWeeks === 4) {
+    if (props.month.length === 4) {
       return <table className="months">
         <tbody>
           <tr>
@@ -46,7 +46,7 @@ const CalendarMonth = (props) => {
           </tr>
         </tbody>
       </table>
-    } else if (numWeeks === 5) {
+    } else if (props.month.length === 5) {
       return <table className="months">
         <tbody>
           <tr>
