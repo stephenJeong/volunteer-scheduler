@@ -13,12 +13,20 @@ class MemberView extends React.Component {
   handleSelect(e) {
     e.preventDefault();
     this.setState({ member: e.target.value });
+    for (let i = 0; i < this.props.allMembers.length; i++) {
+      console.log(this.props.allMembers[i].email)
+      console.log(e.target.value);
+      if (this.props.allMembers[i].email === e.target.value) {
+        console.log('****got here!')
+        this.props.handleUpdateMemberSelect(this.props.allMembers[i]);
+      }
+    }
   }
 
   memberData() {
     for (let i = 0; i < this.props.allMembers.length; i++) {
       if (this.props.allMembers[i].email === this.state.member) {
-        let {organization, firstName, lastName, email, phone, dateConflicts, datesScheduled} = this.props.allMembers[i];
+        let {organization, firstName, lastName, email, phone, dateConflicts, datesScheduled} = this.props.memberKeys;
         return (
           <form className="centerForm">
           <label>
