@@ -1,4 +1,4 @@
-const db = require('../database-mongo/index.js');
+const db = require('../db-mongo/index.js');
 
 const formatToWeeks = (members) => {
   // console.log('members[0]', members[0]);
